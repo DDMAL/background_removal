@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from keras.layers import Input, Dropout, Activation, MaxPooling2D, UpSampling2D
-from keras.layers import Conv2D, Conv2DTranspose
-from keras.layers.normalization import BatchNormalization
-from keras import layers
-from keras.models import Model
-import keras.backend as K
+from tensorflow.keras.layers import Input, Dropout, Activation, MaxPooling2D, UpSampling2D
+from tensorflow.keras.layers import Conv2D, Conv2DTranspose
+from tensorflow.keras.layers import BatchNormalization
+from tensorflow.keras import layers
+from tensorflow.keras.models import Model
+from tensorflow.keras import backend as K
 
 # ----------------------------------------------------------------------------
 def build_REDNet(nb_layers, input_size, nb_filters=32, k_size=3, dropout=0, strides=1, every=1):

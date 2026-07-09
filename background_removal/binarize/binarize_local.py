@@ -7,7 +7,7 @@ import argparse
 import cv2
 import warnings
 import numpy as np
-# from keras import backend as K
+# from tensorflow.keras import backend as K
 from tensorflow.keras import backend as K
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -17,11 +17,12 @@ util.init()
 warnings.filterwarnings('ignore')
 K.set_image_data_format('channels_last')
 
+# TF2: enable GPU memory growth via the modern API (the old tf.compat.v1.Session was
+# never wired via set_session, so it was a no-op under eager execution).
 if K.backend() == 'tensorflow':
-    import tensorflow as tf    # Memory control with Tensorflow
-    config = tf.compat.v1.ConfigProto()
-    config.gpu_options.allow_growth=True
-    sess = tf.compat.v1.Session(config=config)
+    import tensorflow as tf
+    for _gpu in tf.config.list_physical_devices('GPU'):
+        tf.config.experimental.set_memory_growth(_gpu, True)
 
 
 # ----------------------------------------------------------------------------
